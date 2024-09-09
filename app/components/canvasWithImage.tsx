@@ -1,24 +1,22 @@
 'use client'; // Required for React hooks in Next.js
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const CanvasWithImage = ({
-  onDropKeyword,
-  onDragOverCanvas,
-  draggingKeyword,
-}) => {
+const CanvasWithImage = ({ draggedItems, onDrop, onDragOverCanvas, id }) => {
   const canvasRef = useRef(null);
+  const imageRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    // Create an image object
+    // Create and load image
     const img = new Image();
-    img.src = '/black.svg'; // Replace with a valid image path or URL
+    img.src = '/black.svg'; // Ensure this path is correct
 
     img.onload = () => {
-      context.drawImage(img, 0, 0, canvas.width, canvas.height);
+      imageRef.current = img;
+      drawCanvas();
     };
 
     img.onerror = () => {
@@ -31,29 +29,35 @@ const CanvasWithImage = ({
     };
   }, []);
 
-  // Handle drop on canvas
-  const handleDrop = (e) => {
-    e.preventDefault();
+  const drawCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    const canvasRect = canvas.getBoundingClientRect();
-    const x = e.clientX - canvasRect.left;
-    const y = e.clientY - canvasRect.top;
-
-    if (draggingKeyword) {
-      context.font = '20px Arial';
-      context.fillStyle = 'black';
-      context.fillText(draggingKeyword, x, y);
+    // Clear canvas and draw background image
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (imageRef.current) {
+      context.drawImage(imageRef.current, 0, 0, canvas.width, canvas.height);
     }
+
+    // Draw all dragged items
+    draggedItems.forEach(({ keyword, color, x, y }) => {
+      context.font = '20px Arial';
+      context.fillStyle = color;
+      context.fillText(keyword, x, y);
+    });
   };
+
+  useEffect(() => {
+    drawCanvas();
+  }, [draggedItems]);
 
   return (
     <canvas
+      id={id}
       ref={canvasRef}
       width={500}
       height={500}
-      onDrop={handleDrop}
+      onDrop={onDrop}
       onDragOver={onDragOverCanvas}
       className="border-2 border-black"
     ></canvas>
