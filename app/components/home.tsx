@@ -54,31 +54,33 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex p-4 h-screen">
-      {/* Left Canvas Section */}
-      <div className="w-1/2 flex items-center justify-center">
-        <CanvasWithImage
-          id="canvas"
-          draggedItems={draggedItems}
-          onDrop={handleDrop}
-          onDragOverCanvas={handleDragOverCanvas}
-        />
-      </div>
+    <div className="flex">
+      <div className="flex p-4 h-screen">
+        {/* Left Canvas Section */}
+        <div className="w-1/2 flex items-center justify-center">
+          <CanvasWithImage
+            id="canvas"
+            draggedItems={draggedItems}
+            onDrop={handleDrop}
+            onDragOverCanvas={handleDragOverCanvas}
+          />
+        </div>
 
-      {/* Right Language Keywords Section */}
-      <div className="w-1/2 p-4 bg-gray-100">
-        <h1 className="text-xl font-semibold mt-7 mb-7">Draggable Language Keywords</h1>
-        <LanguageKeywordsButton
-          onDragStart={handleDragStart}
-          draggedItems={draggedItems}
-        />
-        <hr />
+        {/* Right Language Keywords Section */}
+        <div className="w-1/2 p-4">
+          <h1 className="text-xl font-semibold mt-7 mb-7">Draggable Language Keywords</h1>
+          <LanguageKeywordsButton
+            onDragStart={handleDragStart}
+            draggedItems={draggedItems}
+          />
+          <hr />
 
-        <h1 className="text-xl font-semibold mt-7 mb-7">Choose Color:</h1>
-        <ColorButton onColorSelect={handleColorSelect} />
+          <h1 className="text-xl font-semibold mt-7 mb-7">Choose Color:</h1>
+          <ColorButton onColorSelect={handleColorSelect} />
 
-        <h1 className="text-xl font-semibold mt-7 mb-7">Choose Size:</h1>
-        <SizeSelectButtonGroup /> {/* or <SizeSelectButtonGroup /> */}
+          <h1 className="text-xl font-semibold mt-7 mb-7">Choose Size:</h1>
+          <SizeSelectButtonGroup /> {/* or <SizeSelectButtonGroup /> */}
+        </div>
       </div>
     </div>
   );

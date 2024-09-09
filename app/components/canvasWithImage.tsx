@@ -55,8 +55,8 @@ const CanvasWithImage = ({ draggedItems, onDrop, onDragOverCanvas, id }) => {
     <canvas
       id={id}
       ref={canvasRef}
-      width={800}
-      height={800}
+      width={600}
+      height={600}
       onDrop={onDrop}
       onDragOver={onDragOverCanvas}
       className="border-2 border-black"
