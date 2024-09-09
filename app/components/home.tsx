@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import LanguageKeywordsButton from './languageKeywordsButton';
 import CanvasWithImage from './canvasWithImage';
 import ColorButton from './colorButton';
+import SizeSelectButtonGroup from './sizeSelectButtonGroup';
 
 const HomePage = () => {
   const [draggedItems, setDraggedItems] = useState([]);
@@ -73,8 +74,11 @@ const HomePage = () => {
         />
         <hr />
 
-        <h1 className="text-xl font-semibold mt-7 mb-7">Color Palette</h1>
+        <h1 className="text-xl font-semibold mt-7 mb-7">Choose Color:</h1>
         <ColorButton onColorSelect={handleColorSelect} />
+
+        <h1 className="text-xl font-semibold mt-7 mb-7">Choose Size:</h1>
+        <SizeSelectButtonGroup /> {/* or <SizeSelectButtonGroup /> */}
       </div>
     </div>
   );
