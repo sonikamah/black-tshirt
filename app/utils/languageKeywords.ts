@@ -1,4 +1,4 @@
-const languageKeywords = [
+export const languageKeywords = [
   'JavaScript',
   'Java',
   'React',

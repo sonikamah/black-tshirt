@@ -1,50 +1,50 @@
-// colorPalette.js
+// utils/hexcodes.js
 const colorPalette = [
-  '#F7DF1E', // JavaScript Yellow
-  '#007396', // Java Blue
-  '#61DAFB', // React Blue
-  '#306998', // Python Blue
-  '#3178C6', // TypeScript Blue
-  '#8CC84B', // Node.js Green
-  '#42b883', // Vue Green
-  '#DD0031', // Angular Red
-  '#00599C', // C++ Blue
-  '#CC342D', // Ruby Red
-  '#00ADD8', // Go Blue
-  '#4F5D95', // PHP Blue
-  '#F05138', // Swift Orange
-  '#F18E2B', // Kotlin Orange
-  '#5A3E9D', // C# Purple
-  '#E44D26', // HTML Orange
-  '#1572B6', // CSS Blue
-  '#CF649A', // SASS Pink
-  '#E38C00', // SQL Orange
-  '#E10098', // GraphQL Pink
-  '#000000', // Rust Black
-  '#00B4AB', // Dart Teal
-  '#DC322F', // Scala Red
+  { hex: '#F7DF1E', label: 'JavaScript Yellow' },
+  { hex: '#007396', label: 'Java Blue' },
+  { hex: '#61DAFB', label: 'React Blue' },
+  { hex: '#306998', label: 'Python Blue' },
+  { hex: '#3178C6', label: 'TypeScript Blue' },
+  { hex: '#8CC84B', label: 'Node.js Green' },
+  { hex: '#42b883', label: 'Vue Green' },
+  { hex: '#DD0031', label: 'Angular Red' },
+  { hex: '#00599C', label: 'C++ Blue' },
+  { hex: '#CC342D', label: 'Ruby Red' },
+  { hex: '#00ADD8', label: 'Go Blue' },
+  { hex: '#4F5D95', label: 'PHP Blue' },
+  { hex: '#F05138', label: 'Swift Orange' },
+  { hex: '#F18E2B', label: 'Kotlin Orange' },
+  { hex: '#5A3E9D', label: 'C# Purple' },
+  { hex: '#E44D26', label: 'HTML Orange' },
+  { hex: '#1572B6', label: 'CSS Blue' },
+  { hex: '#CF649A', label: 'SASS Pink' },
+  { hex: '#E38C00', label: 'SQL Orange' },
+  { hex: '#E10098', label: 'GraphQL Pink' },
+  { hex: '#000000', label: 'Rust Black' },
+  { hex: '#00B4AB', label: 'Dart Teal' },
+  { hex: '#DC322F', label: 'Scala Red' },
 
   // Generic Colors
-  '#FF5733', // Vivid Red
-  '#C70039', // Dark Red
-  '#900C3F', // Wine Red
-  '#581845', // Deep Purple
-  '#DAF7A6', // Light Green
-  '#FFC300', // Gold
-  '#FF5733', // Orange
-  '#C70039', // Maroon
-  '#900C3F', // Dark Pink
-  '#581845', // Plum
-  '#D3D3D3', // Light Gray
-  '#A9A9A9', // Dark Gray
-  '#808080', // Gray
-  '#FFFFFF', // White
-  '#000000', // Black
-  '#0000FF', // Blue
-  '#00FF00', // Green
-  '#FFFF00', // Yellow
-  '#FF00FF', // Magenta
-  '#00FFFF', // Cyan
+  { hex: '#FF5733', label: 'Vivid Red' },
+  { hex: '#C70039', label: 'Dark Red' },
+  { hex: '#900C3F', label: 'Wine Red' },
+  { hex: '#581845', label: 'Deep Purple' },
+  { hex: '#DAF7A6', label: 'Light Green' },
+  { hex: '#FFC300', label: 'Gold' },
+  { hex: '#FF5733', label: 'Orange' },
+  { hex: '#C70039', label: 'Maroon' },
+  { hex: '#900C3F', label: 'Dark Pink' },
+  { hex: '#581845', label: 'Plum' },
+  { hex: '#D3D3D3', label: 'Light Gray' },
+  { hex: '#A9A9A9', label: 'Dark Gray' },
+  { hex: '#808080', label: 'Gray' },
+  { hex: '#FFFFFF', label: 'White' },
+  { hex: '#000000', label: 'Black' },
+  { hex: '#0000FF', label: 'Blue' },
+  { hex: '#00FF00', label: 'Green' },
+  { hex: '#FFFF00', label: 'Yellow' },
+  { hex: '#FF00FF', label: 'Magenta' },
+  { hex: '#00FFFF', label: 'Cyan' },
 ];
 
 export default colorPalette;

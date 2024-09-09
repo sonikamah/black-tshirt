@@ -1,33 +1,10 @@
 'use client'; // Required for React hooks in Next.js
 
 import React from 'react';
+import { languageKeywords } from "../utils/languageKeywords";
 
-const LanguageKeywordsButton = ({ onDragStart }) => {
-  const languageKeywords = [
-    'JavaScript',
-    'Java',
-    'React',
-    'Python',
-    'TypeScript',
-    'Node.js',
-    'Vue',
-    'Angular',
-    'C++',
-    'Ruby',
-    'Go',
-    'PHP',
-    'Swift',
-    'Kotlin',
-    'C#',
-    'HTML',
-    'CSS',
-    'SASS',
-    'SQL',
-    'GraphQL',
-    'Rust',
-    'Dart',
-    'Scala',
-  ];
+const LanguageKeywordsButton = ({ onDragStart, draggedItems }) => {
+  const draggedKeywords = draggedItems.map(item => item.keyword);
 
   return (
     <div className="flex flex-wrap gap-3 mb-4">
@@ -36,7 +13,11 @@ const LanguageKeywordsButton = ({ onDragStart }) => {
           key={index}
           draggable
           onDragStart={(e) => onDragStart(e, keyword)}
-          className="px-4 py-2 bg-blue-500 text-white rounded-full border border-blue-600 hover:bg-blue-600 cursor-grab"
+          className={`px-4 py-2 rounded-full border cursor-grab ${
+            draggedKeywords.includes(keyword)
+              ? 'bg-blue-500 text-white border-blue-700 ring-2 ring-blue-300'
+              : 'bg-gray-200 text-black border-gray-300 hover:bg-gray-300'
+          }`}
         >
           {keyword}
         </button>
