@@ -4,21 +4,15 @@ import React, { useState } from 'react';
 import LanguageKeywordsButton from './languageKeywordsButton';
 import CanvasWithImage from './canvasWithImage';
 import ColorButton from './colorButton';
-import SizeSelectButtonGroup from './sizeSelectButtonGroup';
+import SizeSelector from './sizeSelector';
 
 const HomePage = () => {
   const [draggedItems, setDraggedItems] = useState([]);
   const [selectedColor, setSelectedColor] = useState('#000000'); // Default color
+  const [selectedSize, setSelectedSize] = useState({}); // To track size for each T-shirt
 
   const handleDragStart = (e, keyword) => {
     e.dataTransfer.setData('text/plain', keyword);
-    setDraggedItems(prevItems => {
-      // Add the keyword to the dragged items if not already present
-      if (!prevItems.some(item => item.keyword === keyword)) {
-        return [...prevItems, { keyword, color: selectedColor }];
-      }
-      return prevItems;
-    });
   };
 
   const handleDrop = (e) => {
@@ -30,18 +24,7 @@ const HomePage = () => {
       const x = e.clientX - canvasRect.left;
       const y = e.clientY - canvasRect.top;
 
-      setDraggedItems(prevItems => {
-        // Update position of the dragged item or add a new one
-        const existingItem = prevItems.find(item => item.keyword === keyword);
-        if (existingItem) {
-          return prevItems.map(item =>
-            item.keyword === keyword
-              ? { ...item, x, y }
-              : item
-          );
-        }
-        return [...prevItems, { keyword, color: selectedColor, x, y }];
-      });
+      setDraggedItems([...draggedItems, { keyword, color: selectedColor, x, y, size: selectedSize[keyword] }]);
     }
   };
 
@@ -53,34 +36,32 @@ const HomePage = () => {
     setSelectedColor(color);
   };
 
+  const handleSizeSelect = (keyword, size) => {
+    setSelectedSize({ ...selectedSize, [keyword]: size });
+  };
+
   return (
-    <div className="flex">
-      <div className="flex p-4 h-screen">
-        {/* Left Canvas Section */}
-        <div className="w-1/2 flex items-center justify-center">
-          <CanvasWithImage
-            id="canvas"
-            draggedItems={draggedItems}
-            onDrop={handleDrop}
-            onDragOverCanvas={handleDragOverCanvas}
-          />
-        </div>
+    <div className="flex flex-col lg:flex-row p-4 h-screen">
+      {/* Canvas Section */}
+      <div className="lg:w-1/2 flex items-center justify-center mb-4 lg:mb-0">
+        <CanvasWithImage
+          id="canvas"
+          draggedItems={draggedItems}
+          onDrop={handleDrop}
+          onDragOverCanvas={handleDragOverCanvas}
+        />
+      </div>
 
-        {/* Right Language Keywords Section */}
-        <div className="w-1/2 p-4">
-          <h1 className="text-xl font-semibold mt-7 mb-7">Draggable Language Keywords</h1>
-          <LanguageKeywordsButton
-            onDragStart={handleDragStart}
-            draggedItems={draggedItems}
-          />
-          <hr />
+      {/* Sidebar Section */}
+      <div className="lg:w-1/3 mx-auto my-auto">
+        <h1 className="text-xl font-semibold mb-4">Draggable Language Keywords</h1>
+        <LanguageKeywordsButton onDragStart={handleDragStart} draggedItems={draggedItems} />
 
-          <h1 className="text-xl font-semibold mt-7 mb-7">Choose Color:</h1>
-          <ColorButton onColorSelect={handleColorSelect} />
+        <h1 className="text-xl font-semibold mt-7 mb-4">Choose Color</h1>
+        <ColorButton onColorSelect={handleColorSelect} />
 
-          <h1 className="text-xl font-semibold mt-7 mb-7">Choose Size:</h1>
-          <SizeSelectButtonGroup /> {/* or <SizeSelectButtonGroup /> */}
-        </div>
+        <h1 className="text-xl font-semibold mt-7 mb-4">Choose Size</h1>
+        <SizeSelector onSizeSelect={handleSizeSelect} />
       </div>
     </div>
   );
